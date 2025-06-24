@@ -1,0 +1,51 @@
+class Solution {
+    public int findMin(int[] nums) {
+        int low=0,high=nums.length-1;
+        int mini=Integer.MAX_VALUE;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            if(nums[low]<=nums[mid])
+            {
+                mini=Math.min(mini,nums[low]);
+                low=mid+1;
+            }
+            else
+            {
+                mini=Math.min(mini,nums[mid]);
+                high=mid-1;
+            }
+        }
+        return mini;
+    }
+}
+
+time=O(log n)
+space=O(1)
+
+class Solution {
+    public int findMin(int[] nums) {
+      return searchmin(nums,0,nums.length-1,Integer.MAX_VALUE);
+    }
+    public int searchmin(int[] nums,int low,int high,int mini)
+    {
+        if(low>high)
+        {
+            return mini;
+        }
+        int mid=(low+high)/2;
+        if(nums[low]<=nums[mid])
+        {
+            mini=Math.min(mini,nums[low]);
+            return searchmin(nums,mid+1,high,mini);
+        }
+        else
+        {
+            mini=Math.min(mini,nums[mid]);
+            return searchmin(nums,low,mid-1,mini);
+        }
+    }
+}
+
+time=O(log n)
+space=O(log n)
