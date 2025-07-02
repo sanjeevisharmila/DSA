@@ -1,0 +1,38 @@
+class Solution {
+    public int mySqrt(int x) {
+     if(x==0 || x==1)
+     return x;
+     int i=2;
+     while(i<=x/i)
+     {
+        i++;
+     }
+     return i-1;
+    }
+}
+
+time=O(n)
+space=O(1)
+
+class Solution {
+    public int mySqrt(int x) {
+      int low=1;
+      int high=x;
+      while(low<=high)
+      {
+         int mid=(low+high)/2;
+        
+         if(mid<=x/mid)
+         {
+            low=mid+1;
+         }
+         else{
+            high=mid-1;
+         }
+      }
+      return high;
+    }
+}
+
+time=O(logn)
+space=O(1)
