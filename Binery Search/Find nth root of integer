@@ -1,0 +1,45 @@
+
+class Solution {
+    public int root(int n,int mid)
+    {
+        int ans=1;
+        while(n>0)
+        {
+            if(n%2==1)
+            {
+                ans=ans*mid;
+                n=n-1;
+            }
+            else
+            {
+                mid=mid*mid;
+                n=n/2;
+            }
+        }
+        return ans;
+    }
+    public int nthRoot(int n, int m) {
+        int low=1,high=m;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            int res=root(n,mid);
+            if(res==m)
+            {
+                return mid;
+            }
+            else if(res<m)
+            {
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+        }
+        return -1;
+    }
+}
+
+time=O(log n)
+space=O(1)
