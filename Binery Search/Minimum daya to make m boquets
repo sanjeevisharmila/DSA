@@ -1,0 +1,84 @@
+class Solution {
+    public boolean miniday(int[] nums,int day,int m,int k)
+    {
+        int count=0,tot=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]<=day)
+            {
+                count++;
+            }
+            else{
+                tot+=count/k;
+                count=0;
+            }
+        }
+        tot+=count/k;
+        return tot>=m;
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+        int maxi=Integer.MIN_VALUE;
+        int mini=Integer.MAX_VALUE;
+        for(int i=0;i<bloomDay.length;i++)
+        {
+            mini=Math.min(mini,bloomDay[i]);
+            maxi=Math.max(maxi,bloomDay[i]);
+        }
+        for(int i=mini;i<=maxi;i++)
+        {
+            if(miniday(bloomDay,i,m,k))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+time=O(n*(maxi-mini+1))
+space=O(1)
+
+class Solution {
+    public boolean miniday(int[] nums,int day,int m,int k)
+    {
+        int count=0,tot=0;
+        for(int i=0;i<nums.length;i++)
+        {
+            if(nums[i]<=day)
+            {
+                count++;
+            }
+            else{
+                tot+=count/k;
+                count=0;
+            }
+        }
+        tot+=count/k;
+        return tot>=m;
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+        int maxi=Integer.MIN_VALUE;
+        int mini=Integer.MAX_VALUE;
+        for(int i=0;i<bloomDay.length;i++)
+        {
+            mini=Math.min(mini,bloomDay[i]);
+            maxi=Math.max(maxi,bloomDay[i]);
+        }
+        int low=mini,high=maxi,ans=-1;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            if(miniday(bloomDay,mid,m,k))
+            {
+                ans=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        } 
+        return ans;
+    }
+}
+time=O(n*log(maxi-mini+1))
+space=O(1)
