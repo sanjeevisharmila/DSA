@@ -1,0 +1,47 @@
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int n=arr.length;
+        int num=1,i=0,missingcount=0;
+        while(true)
+        {
+            if(i<n && arr[i]==num)
+            {
+                i++;
+            }
+            else
+            {
+                missingcount++;
+                if(missingcount==k)
+                {
+                    return num;
+                }
+            }
+            num++;
+        }
+    }
+}
+
+time=O(n+k)
+space=O(1)
+
+class Solution {
+    public int findKthPositive(int[] arr, int k) {
+        int low=0,high=arr.length-1;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            int ans=arr[mid]-(mid+1);
+            if(ans<k)
+            {
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+       return high+k+1;
+    }
+}
+
+time=O(n)
+space=O(1)
