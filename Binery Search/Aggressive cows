@@ -1,0 +1,36 @@
+class Solution {
+    public static boolean aggressive(int[] stalls,int dis,int k)
+    {
+        int noofcows=1,last=stalls[0];
+        for(int i=1;i<stalls.length;i++)
+        {
+            if(stalls[i]-last>=dis)
+            {
+                noofcows++;
+                last=stalls[i];
+            }
+        }
+        return noofcows>=k;
+    }
+    public static int aggressiveCows(int[] stalls, int k) {
+        
+        Arrays.sort(stalls);
+        int maxi=stalls[stalls.length-1];
+        int res=1; 
+        for(int j=1;j<=maxi;j++)
+        {
+            if(aggressive(stalls,j,k))
+            {
+                res=j;
+            }
+            else
+            {
+                break;
+            }
+        }
+        return res;
+    } 
+}
+
+time=O(nlogn)+O(maxi*n)
+space=O(1)
