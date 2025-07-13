@@ -34,3 +34,42 @@ class Solution {
 
 time=O(nlogn)+O(maxi*n)
 space=O(1)
+
+class Solution {
+    public static boolean aggressive(int[] stalls,int dis,int k)
+    {
+        int noofcows=1,last=stalls[0];
+        for(int i=1;i<stalls.length;i++)
+        {
+            if(stalls[i]-last>=dis)
+            {
+                noofcows++;
+                last=stalls[i];
+            }
+        }
+        return noofcows>=k;
+    }
+    public static int aggressiveCows(int[] stalls, int k) {
+        
+        Arrays.sort(stalls);
+        int low=1,high=stalls[stalls.length-1];
+        int res=-1;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            if(aggressive(stalls,mid,k))
+            {
+                res=mid;
+                low=mid+1;
+            }
+            else
+            {
+                high=mid-1;
+            }
+        }
+        return res;
+    } 
+}
+
+time=O(nlogn)+O(log(maxi)*n)
+space=O(1)
