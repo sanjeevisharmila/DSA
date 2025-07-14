@@ -1,0 +1,85 @@
+class Solution {
+    public static boolean allocatebooks(int[] arr,int page,int k)
+    {
+        int pagecount=1,pages=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(pages+arr[i]<=page)
+            {
+                pages+=arr[i];
+            }
+            else
+            {
+                pagecount++;
+                pages=arr[i];
+            }
+        }
+        return pagecount<=k;
+    }
+    public static int findPages(int[] arr, int k) {
+      int maxi=Arrays.stream(arr).max().getAsInt();
+      int sum=Arrays.stream(arr).sum();
+      if(k>arr.length)
+      {
+          return -1;
+      }
+      for(int i=maxi;i<=sum;i++)
+      {
+          if(allocatebooks(arr,i,k))
+          {
+              return i;
+          }
+      }
+      return -1;
+    }
+}
+
+time=O(n*(sum-maxi))
+space=O(1)
+
+class Solution {
+    public static boolean allocatebooks(int[] arr,int page,int k)
+    {
+        int pagecount=1,pages=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(pages+arr[i]<=page)
+            {
+                pages+=arr[i];
+            }
+            else
+            {
+                pagecount++;
+                pages=arr[i];
+            }
+        }
+        return pagecount<=k;
+    }
+    public static int findPages(int[] arr, int k) {
+      int maxi=Arrays.stream(arr).max().getAsInt();
+      int sum=Arrays.stream(arr).sum();
+      int ans=-1;
+      if(k>arr.length)
+      {
+          return -1;
+      }
+      int low=maxi,high=sum;
+      while(low<=high)
+      {
+          int mid=(low+high)/2;
+          if(allocatebooks(arr,mid,k))
+          {
+              ans=mid;
+              high=mid-1;
+          }
+          else
+          {
+              low=mid+1;
+          }
+      }
+      return ans;
+    }
+}
+
+time=O(log(sum-maxi)*n)
+space=O(1)
