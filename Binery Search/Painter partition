@@ -1,0 +1,79 @@
+
+class Solution {
+    public boolean minitime(int[] arr,int painter,int k)
+    {
+        int paintercount=1,sum=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(sum+arr[i]<=painter)
+            {
+                sum+=arr[i];
+            }
+            else
+            {
+                paintercount++;
+                sum=arr[i];
+            }
+        }
+        return paintercount<=k;
+    }
+    public int minTime(int[] arr, int k) {
+        int maxi=Arrays.stream(arr).max().getAsInt();
+        int sum=Arrays.stream(arr).sum();
+        for(int i=maxi;i<=sum;i++)
+        {
+            if(minitime(arr,i,k))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+time=O(n*(sum-maxi))
+space=O(1)
+
+
+class Solution {
+    public boolean minitime(int[] arr,int painter,int k)
+    {
+        int paintercount=1,sum=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(sum+arr[i]<=painter)
+            {
+                sum+=arr[i];
+            }
+            else
+            {
+                paintercount++;
+                sum=arr[i];
+            }
+        }
+        return paintercount<=k;
+    }
+    public int minTime(int[] arr, int k) {
+        int maxi=Arrays.stream(arr).max().getAsInt();
+        int sum=Arrays.stream(arr).sum();
+        int ans=-1;
+        int low=maxi,high=sum;
+        while(low<=high)
+        {
+            int mid=(low+high)/2;
+            if(minitime(arr,mid,k))
+            {
+                ans=mid;
+                high=mid-1;
+            }
+            else
+            {
+                low=mid+1;
+            }
+        }
+        return ans;
+    }
+}
+
+time=O(n*log(sum-maxi))
+space=O(1)
