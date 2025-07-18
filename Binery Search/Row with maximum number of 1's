@@ -1,0 +1,61 @@
+class Solution {
+    public int[] rowAndMaximumOnes(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int ind = 0, maxi = 0;
+
+        for (int i = 0; i < n; i++) {
+            int count=0;
+            for(int j=0;j<m;j++)
+            {
+                if(mat[i][j]==1)
+                {
+                    count++;
+                }
+            }
+            if(count>maxi)
+            {
+                maxi=count;
+                ind=i;
+            }
+        }
+
+        return new int[]{ind, maxi};
+    }
+}
+
+time=O(m*n)
+space=O(1)
+class Solution {
+   public int firstOneIndex(int[] row, int n) {
+        int low = 0, high = n - 1, ans = n;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (row[mid] ==1) {
+                ans = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    public int[] rowAndMaximumOnes(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int index = -1, maxCount = 0;
+
+        for (int i = 0; i < n; i++) {
+            int ones = m - firstOneIndex(mat[i], m);
+            if (ones > maxCount) {
+                maxCount = ones;
+                index = i;
+            }
+        }
+
+        return new int[]{index, maxCount};
+    }
+}
+time=O(n*log(m))
+space=O(1)
