@@ -18,5 +18,5 @@ class Solution {
     }
 }
 
-time=O(2^n)
-space=O(2^n)
+time=O(2^n*log(2^n))
+space=O(2^n+n)
