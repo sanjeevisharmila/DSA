@@ -1,0 +1,22 @@
+class Solution {
+    public void backtrack(int[] nums,List<Integer>res,int ind,int sum)
+    {
+        if(ind==nums.length)
+        {
+            res.add(sum);
+            return;
+        }
+      
+          backtrack(nums,res,ind+1,sum+nums[ind]);
+          backtrack(nums,res,ind+1,sum);
+       
+    }
+    public List<Integer> subsetSums(int[] nums) {
+        List<Integer>res=new ArrayList<>();
+        backtrack(nums,res,0,0);
+        return res;
+    }
+}
+
+time=O(2^n)
+space=O(2^n)
