@@ -1,0 +1,57 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        int n1=nums1.length,n2=nums2.length;
+        Set<Integer>st=new HashSet<>();
+        for(int num:nums1){
+            st.add(num);
+        }
+        Set<Integer>ans=new HashSet();
+        for(int num:nums2){
+            if(st.contains(num)){
+               ans.add(num);
+            }
+        }
+        int[] res=new int[ans.size()];
+        int ind=0;
+        for(int val:ans){
+            res[ind++]=val;
+        }
+        return res;
+    }
+}
+
+time=O(n+m)
+space=O(n)
+
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        int n1=nums1.length,n2=nums2.length;
+        int i=0,j=0;
+        Set<Integer>st=new HashSet<>();
+        while(i<n1 && j<n2){
+            if(nums1[i]==nums2[j]){
+                st.add(nums1[i]);
+                i++;
+                j++;
+            }
+            else if(nums1[i]<nums2[j]){
+                i++;
+            }
+            else
+            {
+                j++;
+            }
+        }
+        int[] res=new int[st.size()];
+        int ind=0;
+        for(int num:st){
+            res[ind++]=num;
+        }
+        return res;
+    }
+}
+
+time=O(n lon+m logm)
+space=O(1)
