@@ -1,0 +1,73 @@
+class GFG {
+    ArrayList<Integer> find(int arr[], int x) {
+        int mini=Integer.MAX_VALUE;
+        int maxi=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==x){
+                mini=Math.min(i,mini);
+                maxi=Math.max(i,maxi);
+            }
+        }
+        ArrayList<Integer>ans=new ArrayList<>();
+        if(mini==Integer.MAX_VALUE){
+            ans.add(-1);
+            ans.add(-1);
+        }else{
+            ans.add(mini);
+            ans.add(maxi);
+        }
+        return ans;
+    }
+}
+
+time=O(n)
+space=O(1)
+
+class GFG {
+    ArrayList<Integer> find(int arr[], int x) {
+        ArrayList<Integer>res=new ArrayList<>();
+        int first=firstpos(arr,x);
+        int last=lastpos(arr,x);
+        
+        res.add(first);
+        res.add(last);
+        
+        return res;
+    }
+    int firstpos(int[] arr,int x){
+        int l=0,h=arr.length-1,ans=-1;
+        while(l<=h){
+            int mid=(l+h)/2;
+            if(arr[mid]==x){
+                ans=mid;
+                h=mid-1;
+            }
+            else if(arr[mid]<x){
+                l=mid+1;
+            }
+            else{
+                h=mid-1;
+            }
+        }
+        return ans;
+    }
+    int lastpos(int[] arr,int x){
+        int l=0,h=arr.length-1,ans=-1;
+        while(l<=h){
+            int mid=(l+h)/2;
+            if(arr[mid]==x){
+                ans=mid;
+                l=mid+1;
+            }
+            else if(arr[mid]<x){
+                l=mid+1;
+            }
+            else{
+                h=mid-1;
+            }
+        }
+        return ans;
+    }
+}
+time=O(logn)+O(logn)
+space=O(1)
