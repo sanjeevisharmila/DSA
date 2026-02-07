@@ -1,0 +1,56 @@
+class Solution {
+    boolean isPalindrome(String s) {
+        // code here
+      int n=s.length();
+      int l=0,r=n-1;
+      while(l<r){
+          if(s.charAt(l)!=s.charAt(r)){
+              return false;
+          }
+          l++;
+          r--;
+      }
+      return true;
+    }
+}
+
+time=O(n)
+space=O(1)
+
+class Solution {
+    boolean isPalindrome(String s) {
+        // code here
+      int n=s.length();
+      int l=0,r=n-1;
+      while(l<n/2){
+          if(s.charAt(l)!=s.charAt(r)){
+              return false;
+          }
+          l++;
+          r--;
+      }
+      return true;
+    }
+}
+
+Your loop runs n/2 times.
+Big-O ignores constants.
+time=O(n)
+space=O(1)
+
+class Solution {
+    boolean isPalindrome(String s) {
+        // code here
+       return palindrome(s,0,s.length()-1,s.length());
+    }
+    boolean palindrome(String s,int l,int r,int n){
+        if(l>n/2)
+        return;
+        if(s.charAt(l)!=s.charAt(r))
+        return false;
+        return palindrome(s,l+1,r-1,n);
+    }
+}
+
+time=O(n)
+space=O(n)
