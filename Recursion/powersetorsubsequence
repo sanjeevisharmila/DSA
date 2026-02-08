@@ -1,0 +1,44 @@
+class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>>res=new ArrayList<>();
+        subsequence(nums,0,new ArrayList<>(),res);
+        return res;
+    }
+    public void subsequence(int[] nums,int ind,List<Integer>temp,List<List<Integer>>ans){
+        if(ind==nums.length){
+            ans.add(new ArrayList<>(temp));
+            return;
+        }
+        temp.add(nums[ind]);
+        subsequence(nums,ind+1,temp,ans);
+        temp.remove(temp.size()-1);
+        subsequence(nums,ind+1,temp,ans);
+    }
+}
+
+time=O(n*2^n)
+space=O(n*2^n)
+
+class Solution {
+    public List<String> AllPossibleStrings(String s) {
+        // Code here
+        List<String>res=new ArrayList<>();
+        subset(s,0,new StringBuilder(),res);
+        res.remove(" ");
+        Collections.sort(res);
+        return res;
+    }
+    public void subset(String s,int ind,StringBuilder temp,List<String>ans){
+        if(ind==s.length()){
+            ans.add(temp.toString());
+            return;
+        }
+        temp.append(s.charAt(ind));
+        subset(s,ind+1,temp,ans);
+        temp.deleteCharAt(temp.length()-1);
+        subset(s,ind+1,temp,ans);
+    }
+}
+
+time=O(2^n*log(2^n))
+space=O(n*2^n)
