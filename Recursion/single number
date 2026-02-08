@@ -1,0 +1,14 @@
+class Solution {
+    public int singleNumber(int[] nums) {
+       return number(nums,0);
+    }
+    public int number(int[] nums,int ind){
+        if(ind==nums.length){
+            return 0;
+        }
+        return nums[ind]^number(nums,ind+1); 
+    }
+}
+
+time=O(n)
+space=O(n)
