@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>>res=new ArrayList<>();
+         pairs(n,k,new ArrayList<>(),res);
+         return res;
+    }
+    public void pairs(int n,int k,List<Integer>temp,List<List<Integer>>res){
+        if(temp.size()==k){
+            res.add(new ArrayList<>(temp));
+            
+            System.out.print(res);
+            return;
+        }
+        if(n==0)
+        return;
+        if(n<(k-temp.size()))
+        return;
+        temp.add(n);
+        pairs(n-1,k,temp,res);
+        temp.remove(temp.size()-1);
+        pairs(n-1,k,temp,res);
+    }
+}
+
+time=O(nck)*O(k)
+space=O(nck)*O(k)
