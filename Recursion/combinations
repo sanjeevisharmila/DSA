@@ -1,6 +1,27 @@
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>>res=new ArrayList<>();
+         pairs(1,n,k,new ArrayList<>(),res);
+         return res;
+    }
+    public void pairs(int i,int n,int k,List<Integer>temp,List<List<Integer>>res){
+        if(i>n){
+        if(temp.size()==k){
+            res.add(new ArrayList<>(temp));
+        }
+        return;
+        }
+        temp.add(i);
+        pairs(i+1,n,k,temp,res);
+        temp.remove(temp.size()-1);
+        pairs(i+1,n,k,temp,res);
+    }
+}
+time=O(2^n)*O(k) //generating all subsets
+space=O(n)
+class Solution {
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>>res=new ArrayList<>();
          pairs(n,k,new ArrayList<>(),res);
          return res;
     }
@@ -22,5 +43,5 @@ class Solution {
     }
 }
 
-time=O(nck)*O(k)
+time=O(nck)*O(k) //generate only k size sets
 space=O(nck)*O(k)
