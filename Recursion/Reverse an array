@@ -1,0 +1,16 @@
+class Solution {
+    public void reverseArray(int arr[]) {
+        // code here
+       reverse(arr,0,arr.length-1);
+    }
+    public void reverse(int arr[],int left,int right){
+       if(left>(arr.length-1)/2)
+       return;
+       int temp=arr[left];
+       arr[left]=arr[right];
+       arr[right]=temp;
+       reverse(arr,left+1,right-1);
+    }
+}
+time=O(n) n/2 calls(Big-O ignores constants like 1/2)
+space=O(n)
