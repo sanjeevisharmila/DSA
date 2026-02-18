@@ -1,0 +1,15 @@
+class Solution {
+    public int search(int arr[], int x) {
+        // code here
+        return searchelement(arr,0,arr.length-1,x);
+    }
+    public int searchelement(int arr[],int i,int n,int x){
+        if(i>n)
+        return -1;
+        if(arr[i]==x)
+        return i;
+        return searchelement(arr,i+1,n,x);
+    }
+}
+time=O(n)
+space=O(n)
