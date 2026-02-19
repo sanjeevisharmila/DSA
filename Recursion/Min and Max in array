@@ -1,0 +1,25 @@
+class Solution {
+    public ArrayList<Integer> getMinMax(int[] arr) {
+        // code Here
+        ArrayList<Integer>ans=new ArrayList<>(2);
+        int mini=getmin(arr,Integer.MAX_VALUE,0,arr.length-1);
+        int maxi=getmax(arr,Integer.MIN_VALUE,0,arr.length-1);
+        ans.add(mini);
+        ans.add(maxi);
+        return ans;
+    }
+    public int getmin(int[] arr,int mini,int i,int n){
+        if(i>n)
+        return mini;
+        return getmin(arr,Math.min(mini,arr[i]),i+1,n);
+    }
+    public int getmax(int[] arr,int maxi,int i,int n){
+        if(i>n)
+        return maxi;
+        return getmax(arr,Math.max(maxi,arr[i]),i+1,n);
+    }
+    
+}
+
+time=O(n)
+space=O(n)
