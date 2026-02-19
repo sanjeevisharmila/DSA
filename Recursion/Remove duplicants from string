@@ -1,0 +1,17 @@
+class Solution {
+    String removeDuplicates(String s) {
+        Set<Character>st=new HashSet<>();
+        return removed(s,0,st);
+    }
+    String removed(String s,int i,Set<Character>st){
+        if(i==s.length())
+        return "";
+        if(st.contains(s.charAt(i)))
+        return removed(s,i+1,st);
+        st.add(s.charAt(i));
+        return s.charAt(i)+removed(s,i+1,st);
+    }
+}
+
+time=O(n)
+space=O(n)
