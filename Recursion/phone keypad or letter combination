@@ -21,3 +21,29 @@ class Solution {
 
 time=O(3^n)
 space=O(3^n)
+
+class Solution {
+     String[] words={"","","abc","def","ghi","jkl","mno","qprs","tuv","wxyz"};
+    public List<String> letterCombinations(String digits) {
+        List<String>res=new ArrayList<>();
+        if(digits.length()==0)
+        return res;
+        permutations(digits,0,new StringBuilder(),res);
+        return res;
+    }
+    public void permutations(String digits,int ind,StringBuilder temp,List<String>res){
+        if(ind==digits.length()){
+            res.add(temp.toString());
+            return;
+        }
+        String letters=words[digits.charAt(ind)-'0'];
+        for(char ch:letters.toCharArray()){
+            temp.append(ch);
+            permutations(digits,ind+1,temp,res);
+            temp.deleteCharAt(temp.length()-1);
+        }
+    }
+}
+
+time=n*O(3^n)
+space=n*O(3^n)
