@@ -1,0 +1,26 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>>res=new ArrayList<>();
+        solve(candidates,new ArrayList<>(),res,0,0,target);
+        return res;
+    }
+    public void solve(int[] arr,List<Integer> temp,List<List<Integer>>res,int start,int sum,int target){
+        if(sum==target){
+                res.add(new ArrayList<>(temp));
+                return;
+        }
+            if(sum>target){
+                return;
+            }
+            for(int i=start;i<arr.length;i++){
+                sum+=arr[i];
+                temp.add(arr[i]);
+                solve(arr,temp,res,i,sum,target);
+                sum-=arr[i];
+                temp.remove(temp.size()-1);
+            }
+    }
+}
+
+time=O(t^n)
+space=O(t)
