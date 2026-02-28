@@ -24,3 +24,29 @@ class Solution {
 
 time=O(t^n)
 space=O(t)
+
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>>res=new ArrayList<>();
+        solve(candidates,new ArrayList<>(),res,0,target);
+        return res;
+    }
+    public void solve(int[] arr,List<Integer> temp,List<List<Integer>>res,int start,int target){
+        if(target==0){
+                res.add(new ArrayList<>(temp));
+                return;
+        }
+        if(target<0)
+        {
+            return;
+        }
+         for(int i=start;i<arr.length;i++){
+                temp.add(arr[i]);
+                solve(arr,temp,res,i,target-arr[i]);
+                temp.remove(temp.size()-1);
+        }
+    }
+}
+
+time=O(t^n)
+space=O(t)
