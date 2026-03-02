@@ -1,0 +1,42 @@
+class Solution {
+    int maxi=Integer.MIN_VALUE;
+    public int maxScore(int[] cardPoints, int k) {
+         maximumscore(cardPoints,0,cardPoints.length-1,0,0,k);
+         return maxi;
+    }
+    public void maximumscore(int[] card,int l,int r,int count,int sum,int k){
+        if(count==k){
+            maxi=Math.max(maxi,sum);
+            return;
+        }
+        maximumscore(card,l+1,r,count+1,sum+card[l],k);
+        maximumscore(card,l,r-1,count+1,sum+card[r],k);
+    }
+}
+time=O(2^k)
+space=O(k)
+
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        int n=cardPoints.length;
+        int total=0;
+        for(int num:cardPoints){
+            total+=num;
+        }
+        int windowsize=n-k;
+        int sum=0;
+        for(int i=0;i<windowsize;i++){
+            sum+=cardPoints[i];
+        }
+        int mini=sum;
+        for(int j=windowsize;j<n;j++){
+            sum+=cardPoints[j];
+            sum-=cardPoints[j-windowsize];
+            mini=Math.min(sum,mini);
+        }
+        return total-mini;
+    }
+}
+
+time=O(n)
+space=O(1)
