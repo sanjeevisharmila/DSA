@@ -1,0 +1,45 @@
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int n=fruits.length,maxi=0;
+        for(int i=0;i<n;i++){
+            List<Integer>list=new ArrayList<>();
+            for(int j=i;j<n;j++){
+                if(!list.contains(fruits[j])){
+                    list.add(fruits[j]);
+                }
+                if(list.size()>2)
+                break;
+                maxi=Math.max(maxi,j-i+1);
+            }
+        }
+        return maxi;
+    }
+}
+time=O(n*n)
+space=O(n)
+
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int n=fruits.length,maxi=0;
+        Map<Integer,Integer>mp=new HashMap<>();
+        int l=0,r=0;
+        while(r<n){
+            int num=fruits[r];
+            mp.put(num,mp.getOrDefault(num,0)+1);
+             while(mp.size()>2){
+                mp.put(fruits[l],mp.get(fruits[l])-1);
+                if(mp.get(fruits[l])==0)
+                {
+                    mp.remove(fruits[l]);
+                }
+                l++;
+             }
+            maxi=Math.max(maxi,r-l+1);
+            r++;
+        }
+        return maxi;
+    }
+}
+
+time=O(n)
+space=O(n)
