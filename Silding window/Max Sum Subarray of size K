@@ -1,0 +1,43 @@
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+        // Code here
+        int n=arr.length,maxi=0;
+        for(int i=0;i<n;i++){
+            int sum=0,count=0;
+            for(int j=i;j<n;j++){
+                sum+=arr[j];
+                count++;
+                if(count==k){
+                    maxi=Math.max(sum,maxi);
+                    break;
+                }
+            }
+        }
+        return maxi;
+    }
+}
+
+time=O(n*n)
+space=O(1)
+
+class Solution {
+    public int maxSubarraySum(int[] arr, int k) {
+        // Code here
+        int n=arr.length,maxi=0;
+        int l=0,r=0,sum=0,count=0;
+        while(r<n){
+            sum+=arr[r];
+            count++;
+            if(count>k){
+                count--;
+                sum-=arr[l];
+                l++;
+            }
+            maxi=Math.max(sum,maxi);
+            r++;
+        }
+        return maxi;
+    }
+}
+time=O(n)
+space=O(1)
