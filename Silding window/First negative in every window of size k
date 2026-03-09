@@ -1,0 +1,61 @@
+class Solution {
+    static List<Integer> firstNegInt(int arr[], int k) {
+        // write code here
+        int n=arr.length;
+        List<Integer>ans=new ArrayList<>();
+        for(int i=0;i<=n-k;i++){
+            int count=0;
+            for(int j=i;j<n;j++){
+                count++;
+                if(arr[j]<0){
+                    ans.add(arr[j]);
+                    break;
+                }
+                if(count==k){
+                   ans.add(0);     
+                   break;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+time=O(n*n)
+space=O(n)
+
+class Solution {
+    static List<Integer> firstNegInt(int arr[], int k) {
+        // write code here
+        int n=arr.length,r=0,l=0;
+        List<Integer>ans=new ArrayList<>();
+        Queue<Integer>temp=new LinkedList<>();
+        while(r<n){
+            if(arr[r]<0){
+                temp.add(arr[r]);
+            }
+            if(r-l+1<k){
+                r++;
+            }
+            else{
+                if(r-l+1==k){
+                if(temp.isEmpty()){
+                    ans.add(0);
+                }
+                else{
+                    ans.add(temp.peek());
+                }
+                if(!temp.isEmpty() && temp.peek()==arr[l]){
+                    temp.poll();
+                }
+                l++;
+                r++;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+time=O(n)
+space=O(n)
