@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        System.out.println(converttoint(s,0));
+    }  
+    public static int converttoint(String s,int i){
+        if(i==s.length()){
+            return 0;
+        }
+        int dig=s.charAt(i)-'0';
+        return dig*(int)Math.pow(10,s.length()-i-1)+converttoint(s,i+1);
+    }
+}
+
+time=O(n)
+space=O(n)
+
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        int sum=0,i=0;
+        while(i<s.length()){
+            int dig=s.charAt(i)-'0';
+            sum=sum+dig*(int)Math.pow(10,s.length()-i-1);
+            i++;
+        }
+        System.out.println(sum);
+    }      
+}
+
+time=O(n)
+space=O(1)
