@@ -1,0 +1,20 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        System.out.println(removex(s,0));
+    }  
+    public static String removex(String s,int i){
+        if(i==s.length()){
+            return "";
+        }
+        if(s.charAt(i)=='x'){
+            return removex(s,i+1);
+        }
+        return s.charAt(i)+removex(s,i+1);
+    }
+}
+
+time=O(n)
+space=O(n)
