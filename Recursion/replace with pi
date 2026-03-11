@@ -1,0 +1,54 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        System.out.println(replacepi(s));
+    }  
+    public static String replacepi(String s){
+        if(s.length()<=1){
+            return s;
+        }
+        if(s.charAt(0)=='p' && s.charAt(1)=='i'){
+            return "3.14"+replacepi(s.substring(2));
+        }
+        return s.charAt(0)+replacepi(s.substring(1));
+    }
+}
+
+time=O(n)*O(n) = every string with new substring
+space=o(n)
+
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        s=s.replace("pi","3.14");
+        System.out.println(s);
+    }  
+}
+
+time=O(n)
+space=O(n)
+
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        System.out.println(replacepi(s,0));
+    }  
+    public static String replacepi(String s,int i){
+        if(i==s.length()){
+            return "";
+        }
+        if(i+1<s.length() && (s.charAt(0)=='p' && s.charAt(1)=='i')){
+            return "3.14"+replacepi(s,i+2);
+        }
+        return s.charAt(0)+replacepi(s,i+1);
+    }
+}
+
+time=O(n)
+space=O(n)
