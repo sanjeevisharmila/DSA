@@ -1,0 +1,53 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        boolean flag=true;
+        int n=s.length();
+        if(s.charAt(0)!='a')
+        {
+            flag=false;
+        }
+        for(int i=0;i<n;i++){
+            if(s.charAt(i)=='b'){
+           if(i+1<n && s.charAt(i)!='b'){
+               flag=false;
+               break;
+           }
+            }
+           i++;
+        }
+        if(flag==true){
+            System.out.println("true");
+        }
+        else{
+            System.out.println("false");
+        }
+    }
+}
+
+time=O(n)
+space=O(1)
+
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.nextLine();
+        System.out.println(check(s,0));
+    }
+    public static boolean check(String s,int i){
+        if(i==s.length())
+        return true;
+        if(s.charAt(i)=='a')
+        return check(s,i+1);
+        if(s.charAt(i)=='b'){
+            if(i+1<s.length() && s.charAt(i+1)=='b'){
+                return check(s,i+2);
+            }
+            return false;
+        }
+        return false;
+    }
+}
