@@ -1,0 +1,58 @@
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>>res=new ArrayList<>();
+        boolean[] used=new boolean[nums.length];
+        permutations(nums,used,new ArrayList<>(),res);
+        return res;
+    }
+    public void  permutations(int[] nums,boolean[] used,List<Integer>temp,List<List<Integer>>res){
+        if(temp.size()==nums.length){
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+        for(int i=0;i<nums.length;i++){
+            if(used[i])
+            continue;
+            used[i]=true;
+            temp.add(nums[i]);
+            permutations(nums,used,temp,res);
+            temp.remove(temp.size()-1);
+            used[i]=false;
+        }
+    }
+}
+
+time=O(n!)*O(n)
+space=O(n!)*O(n)
+
+class Solution {
+    public ArrayList<String> findPermutation(String s) {
+        // Code here
+      ArrayList<String>res=new ArrayList<>();
+      char[] chars=s.toCharArray();
+      permutations(chars,0,res);
+      Collections.sort(res);
+      return res;
+  }
+  public void permutations(char[] chars,int ind,ArrayList<String>res){
+     if(ind==chars.length){
+         if(!res.contains(new String(chars))){
+             res.add(new String(chars));
+         }
+         return;
+     }
+     for(int i=ind;i<chars.length;i++){
+         swap(chars,ind,i);
+         permutations(chars,ind+1,res);
+         swap(chars,ind,i);
+     }
+  }
+  public void swap(char[] chars,int i,int j){
+      char temp=chars[i];
+      chars[i]=chars[j];
+      chars[j]=temp;
+  }
+}
+
+time=O(n!×(n!×n))
+space=O(n×n!)
