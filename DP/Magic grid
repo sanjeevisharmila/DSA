@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int m=sc.nextInt();
+        int n=sc.nextInt();
+        int[][] mat=new int[m][n];
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+               mat[i][j]=sc.nextInt();
+            }
+        }
+        System.out.println(grid(mat,0,0,m,n));
+    }
+    public static int grid(int[][] mat,int i,int j,int m,int n){
+        if(i==m-1&&j==n-1){
+            return Math.max(1,1-mat[i][j]);
+        }
+        if(i==m || j==n){
+            return Integer.MAX_VALUE;
+        }
+        int b=grid(mat,i+1,j,m,n);
+        int r=grid(mat,i,j+1,m,n);
+        int req=Math.min(b,r);
+        return Math.max(1,req-mat[i][j]);
+    }
+}
+
+time=O(2^(m+n))
+space=O(m + n)
