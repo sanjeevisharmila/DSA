@@ -1,0 +1,64 @@
+class Solution {
+    public String longestNiceSubstring(String s) {
+        int n=s.length();
+        String res="";
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                String sub=s.substring(i,j+1);
+                if(validate(sub)){
+                    if(sub.length()>res.length()){
+                        res=sub;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+    public boolean validate(String s){
+        int[] lower=new int[26];
+        int[] higher=new int[26];
+        for(char ch:s.toCharArray()){
+            if(Character.isLowerCase(ch)){
+                lower[ch-'a']=1;
+            }
+            else{
+                higher[ch-'A']=1;
+            }
+        }
+        for(int i=0;i<26;i++){
+            if(lower[i]!=higher[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+time=O(n^3)
+space=O(n)
+
+class Solution {
+    public String longestNiceSubstring(String s) {
+        return validate(s);
+    }
+    public String validate(String s){
+        if(s.length()<2)
+        return "";
+        Set<Character>st=new HashSet<>();
+        for(char ch:s.toCharArray()){
+            st.add(ch);
+        }
+        for(int i=0;i<s.length();i++){
+            char ch=s.charAt(i);
+            if(!(st.contains(Character.toLowerCase(ch))&&st.contains(Character.toUpperCase(ch)))){
+                String left=validate(s.substring(0,i));
+                String right=validate(s.substring(i+1));
+                return left.length()>=right.length() ? left:right;
+            }
+        }
+        return s;
+    }
+}
+
+time=O(n^2)
+space=O(n)
