@@ -1,0 +1,41 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        if(subsequence(s,t,0,0)){
+            return true;
+        }
+        return false;
+    }
+    public boolean subsequence(String s,String t,int i,int j){
+        if(j==s.length()){
+            return true;
+        }
+        if(i==t.length())
+        return false;
+        if(s.charAt(j)==t.charAt(i)){
+            return subsequence(s,t,i+1,j+1);
+        }
+        return subsequence(s,t,i+1,j);
+    }
+}
+
+time=O(n)
+space=O(n)
+
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        if(s.length()==0)
+        return true;
+        int j=0;
+       for(int i=0;i<t.length();i++){
+           if(j<s.length() && t.charAt(i)==s.charAt(j)){
+               j++;
+           }
+           if(j==s.length())
+           return true;
+       }
+       return false;
+    }
+}
+
+time=O(n)
+space=O(1)
