@@ -1,0 +1,43 @@
+class Solution {
+    public int minimumRecolors(String blocks, int k) {
+        int mini=Integer.MAX_VALUE,n=blocks.length();
+        for(int i=0;i<n;i++){
+            int c=0;
+            for(int j=i;j<n;j++){
+                if(blocks.charAt(j)=='W'){
+                    c++;
+                }
+                if(j-i+1==k){
+                    mini=Math.min(mini,c);
+                    break;
+                }
+            }
+        }
+        return mini;
+    }
+}
+time=O(n*n)
+space=O(1)
+
+class Solution {
+    public int minimumRecolors(String blocks, int k) {
+        int mini=Integer.MAX_VALUE,n=blocks.length(),r=0,l=0,c=0;
+        while(r<n){
+            if(blocks.charAt(r)=='W'){
+                c++;
+            }
+            if(r-l+1==k){
+                mini=Math.min(c,mini);
+                if(blocks.charAt(l)=='W'){
+                    c--;
+                }
+                l++;
+            }
+            r++;
+        }
+        return mini;
+    }
+}
+
+time=O(n)
+space=O(1)
