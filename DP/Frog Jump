@@ -1,0 +1,43 @@
+class Solution {
+    int minCost(int[] height) {
+        int n=height.length;
+        return jumpfrog(height,n-1);
+    }
+    int jumpfrog(int[] height,int n){
+        if(n==0)
+        return 0;
+        int left=jumpfrog(height,n-1)+Math.abs(height[n]-height[n-1]);
+        int right=Integer.MAX_VALUE;
+        if(n>1){
+         right=jumpfrog(height,n-2)+Math.abs(height[n]-height[n-2]);
+        }
+        return Math.min(left,right);
+    }
+}
+
+time=O(2^n)
+space=O(n)
+
+class Solution {
+    int minCost(int[] height) {
+        int n=height.length;
+        int[] dp=new int[n];
+        Arrays.fill(dp,-1);
+        return jumpfrog(height,n-1,dp);
+    }
+    int jumpfrog(int[] height,int n,int[] dp){
+        if(n==0)
+        return 0;
+        if(dp[n]!=-1)
+        return dp[n];
+        int left=jumpfrog(height,n-1,dp)+Math.abs(height[n]-height[n-1]);
+        int right=Integer.MAX_VALUE;
+        if(n>1){
+          right=jumpfrog(height,n-2,dp)+Math.abs(height[n]-height[n-2]);
+        }
+        return dp[n]=Math.min(left,right);
+    }
+}
+
+time=O(n)
+space=O(n)
