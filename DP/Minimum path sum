@@ -1,0 +1,44 @@
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int n=grid.length;
+        int m=grid[0].length;
+        return pathsum(grid,n-1,m-1,0,0);
+    }
+    public int pathsum(int[][] arr,int n,int m,int i,int j){
+        if(i>n || j>m)
+        return Integer.MAX_VALUE;
+        if(i==n && j==m)
+        return arr[i][j];
+        int left=pathsum(arr,n,m,i,j+1);
+        int right=pathsum(arr,n,m,i+1,j);
+        return arr[i][j]+Math.min(left,right);  
+    }
+}
+time=O(2^(m+n))
+space=O(m+n)
+
+class Solution {
+    public int minPathSum(int[][] grid) {
+        int n=grid.length;
+        int m=grid[0].length;
+        int[][] dp=new int[n][m];
+        for(int[] it:dp){
+            Arrays.fill(it,-1);
+        }
+        return pathsum(grid,n-1,m-1,0,0,dp);
+    }
+    public int pathsum(int[][] arr,int n,int m,int i,int j,int[][] dp){
+        if(i>n || j>m)
+        return Integer.MAX_VALUE;
+        if(dp[i][j]!=-1)
+        return dp[i][j];
+        if(i==n && j==m)
+        return arr[i][j];
+        int left=pathsum(arr,n,m,i,j+1,dp);
+        int right=pathsum(arr,n,m,i+1,j,dp);
+        return dp[i][j]=arr[i][j]+Math.min(left,right);  
+    }
+}
+
+time=O(n*m)
+space=O(n*m)
