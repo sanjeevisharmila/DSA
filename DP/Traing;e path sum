@@ -1,0 +1,16 @@
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int n=triangle.size();
+       return trianglesum(triangle,0,0,n-1);
+    }
+    public int trianglesum(List<List<Integer>> arr,int i,int j,int n){
+        if(i==n)
+        return arr.get(i).get(j);
+        int l=trianglesum(arr,i+1,j,n);
+        int r=trianglesum(arr,i+1,j+1,n);
+        return arr.get(i).get(j)+Math.min(l,r);
+    }
+}
+
+time=o(2^n)
+space=O(n)
