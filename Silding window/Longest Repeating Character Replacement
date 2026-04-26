@@ -1,0 +1,52 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int n=s.length(),maxi=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            int[] mp=new int[26];
+            int frq=0;
+            for(int j=i;j<n;j++){
+              mp[s.charAt(j)-'A']++;
+              frq=Math.max(frq, mp[s.charAt(j)-'A']);
+              int len=j-i+1;
+              if(len-frq<=k)
+              {
+                 maxi=Math.max(len,maxi);
+              }
+              else{
+                break;
+              }
+            }
+        }
+        return maxi;
+    }
+}
+
+time=O(n*n)
+space=O(n)
+
+class Solution {
+    public int characterReplacement(String s, int k) {
+            int n=s.length(),maxi=Integer.MIN_VALUE;
+            int[] mp=new int[26];
+            int frq=0,r=0,l=0;
+            while(r<n){
+                mp[s.charAt(r)-'A']++;
+                frq=Math.max(frq, mp[s.charAt(r)-'A']);
+                int len=r-l+1;
+                if(len-frq<=k)
+                {
+                 maxi=Math.max(len,maxi);
+                }
+                else{
+                    mp[s.charAt(l)-'A']--;
+                    frq=mp[s.charAt(l)-'A']-1;
+                    l++;
+                }
+                r++;
+            }   
+            return maxi; 
+    }
+}
+
+time=O(n)
+space=O(n)
