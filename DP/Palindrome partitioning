@@ -32,3 +32,45 @@ class Solution {
 
 time=O(n*n*2^n)
 space=O(n*2^n)
+
+class Solution {
+    List<List<String>>res=new ArrayList<>();
+    public List<List<String>> partition(String s) {
+        int n=s.length();
+        Boolean[][] dp=new Boolean[n][n];
+        List<String>temp=new ArrayList<>();
+        palindrome(s,0,temp,dp);
+        return res;
+    }
+    public void palindrome(String s,int start,List<String>temp,Boolean[][] dp){
+        if(start==s.length()){
+          res.add(new ArrayList<>(temp));
+          return;
+        }   
+        for(int i=start;i<s.length();i++){
+            if(checkpalindrome(s,start,i,dp)){
+                temp.add(s.substring(start,i+1));
+                palindrome(s,i+1,temp,dp);
+                temp.remove(temp.size()-1);
+            }
+        }
+    }
+    public boolean checkpalindrome(String s,int i,int j,Boolean[][] dp){
+       if(dp[i][j]!=null){
+          return dp[i][j];
+       }
+       while(i<j){
+         if(s.charAt(i)!=s.charAt(j)){
+            dp[i][j]=false;
+            return false;
+         }
+         i++;
+         j--;
+       }
+       dp[i][j]=true;
+       return true;
+    }
+}
+
+time=O(n*2^n)
+space=O(n*2^n)
