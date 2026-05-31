@@ -1,0 +1,48 @@
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        return checkbreak(s, wordDict, 0);
+    }
+    public boolean checkbreak(String s,List<String> words,int start){
+        if(start==s.length()){
+            return true;
+        }
+        for(String word:words){
+            int len=word.length();
+            if(start+len<=s.length() && s.substring(start,start+len).equals(word)){
+                if(checkbreak(s,words,start+len)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+time=O(2^n)
+space=O(n)
+
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
+        Boolean[] dp=new Boolean[s.length()];
+        return checkbreak(s, wordDict, 0, dp);
+    }
+    public boolean checkbreak(String s,List<String> words,int start,Boolean[] dp){
+        if(start==s.length()){
+            return true;
+        }
+        if(dp[start]!=null){
+            return dp[start];
+        }
+        for(String word:words){
+            int len=word.length();
+            if(start+len<=s.length() && s.substring(start,start+len).equals(word)){
+                if(checkbreak(s,words,start+len,dp)){
+                    return dp[start]=true;
+                }
+            }
+        }
+        return dp[start]=false;
+    }
+}
+time=O(n*m)
+space=O(n)
