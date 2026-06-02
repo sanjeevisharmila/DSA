@@ -1,0 +1,39 @@
+class Solution {
+    public int rob(int[] nums) {
+       return robber(nums,0);
+    }
+    public int robber(int[] nums,int n){
+        if(n>=nums.length){
+            return 0;
+        }
+        int first=nums[n]+robber(nums,n+2);
+        int second=robber(nums,n+1);
+        return Math.max(first,second);
+    }
+}
+
+time=O(2^n)
+space=O(n)
+
+class Solution {
+    public int rob(int[] nums) {
+       int[] dp=new int[nums.length];
+       Arrays.fill(dp,-1);
+       return robber(nums,0,dp);
+
+    }
+    public int robber(int[] nums,int n,int[] dp){
+        if(n>=nums.length){
+            return 0;
+        }
+        if(dp[n]!=-1){
+            return dp[n];
+        }
+        int first=nums[n]+robber(nums,n+2,dp);
+        int second=robber(nums,n+1,dp);
+        return dp[n]=Math.max(first,second);
+    }
+}
+
+time=O(n)
+space=O(n)
