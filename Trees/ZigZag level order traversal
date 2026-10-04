@@ -1,0 +1,32 @@
+class Solution {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>>ans=new ArrayList<>();
+        Queue<TreeNode>qu=new ArrayDeque<>();
+        if(root!=null){
+         qu.offer(root);
+        }
+        boolean LeftToRight=true;
+        while(!qu.isEmpty()){
+            List<Integer>temp=new ArrayList<>();
+            int len=qu.size();
+            for(int i=0;i<len;i++){
+                TreeNode res=qu.poll();
+                if(LeftToRight){
+                    temp.addLast(res.val);
+                }
+                else{
+                    temp.addFirst(res.val);
+                }
+                if(res.left!=null){
+                    qu.offer(res.left);
+                }
+                if(res.right!=null){
+                    qu.offer(res.right);
+                }
+            }
+            ans.add(temp);
+            LeftToRight=!LeftToRight;
+        }
+        return ans;
+    }
+}
