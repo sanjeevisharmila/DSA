@@ -1,0 +1,40 @@
+class Solution {
+    public boolean isMaxHeap(int[] arr) {
+        return solve(arr,0,arr.length);
+    }
+    public boolean solve(int[] arr,int i,int n){
+        if(2*i+1>=n){
+            return true;
+        }
+        int left=2*i+1;
+        int right=2*i+2;
+        if(left<n && arr[left]>arr[i]){
+            return false;
+        }
+        if(right<n && arr[right]>arr[i]){
+            return false;
+        }class Solution {
+    public boolean isMaxHeap(int[] arr) {
+      for(int i=0;i<=(arr.length-2)/2;i++){
+          int left=2*i+1;
+          int right=2*i+2;
+          if(left<arr.length && arr[left]>arr[i]){
+              return false;
+          }
+          if(right<arr.length && arr[right]>arr[i]){
+              return false;
+          }
+      }
+      return true;
+    }
+}
+
+      time=O(n)
+      space=O(1)
+        return solve(arr,left,n)&&solve(arr,right,n);
+    }
+}
+
+time=O(n)
+space=O(h)
+  
