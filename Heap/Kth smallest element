@@ -1,0 +1,15 @@
+class Solution {
+    public int kthSmallest(int[] arr, int k) {
+        Queue<Integer>temp=new PriorityQueue<>(Collections.reverseOrder());
+        for(int it:arr){
+            temp.offer(it);
+            if(temp.size()>k){
+                temp.poll();
+            }
+        }
+        return temp.peek();
+    }
+}
+
+time=O(n*log(k))
+space=O(k)
