@@ -1,0 +1,41 @@
+class Solution {
+    static boolean isSubsetSum(int arr[], int sum) {
+        return solve(arr,sum,0,0);
+    }
+    static boolean solve(int arr[],int target,int s,int i){
+         if(s==target){
+             return true;
+         }
+         if(i==arr.length || s>target){
+             return false;
+         }
+         return solve(arr,target,s+arr[i],i+1)||solve(arr,target,s,i+1);
+    }
+}
+
+time=O(2^n)
+space=O(n)
+
+class Solution {
+    static boolean isSubsetSum(int arr[], int sum) {
+        Boolean[][] dp=new Boolean[arr.length][sum];
+        return solve(arr,sum,0,0,dp);
+    }
+    static boolean solve(int arr[],int target,int s,int i,Boolean[][] dp){
+         if(s==target){
+             return true;
+         }
+         if(i==arr.length || s>target){
+             return false;
+         }
+         if(dp[i][s]!=null){
+             return dp[i][s];
+         }
+         return dp[i][s]= solve(arr,target,s+arr[i],i+1,dp)||solve(arr,target,s,i+1,dp);
+    }
+}
+
+time=O(n*sum)
+space=O(n)
+
+
