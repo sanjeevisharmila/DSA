@@ -1,0 +1,52 @@
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int tot=0;
+        for(int i=0;i<nums.length;i++){
+            tot+=nums[i];
+        }
+        if(tot%2!=0){
+            return false;
+        }
+        return solve(nums,tot/2,0,0);
+    }
+    public boolean solve(int[] nums,int avg,int s,int i){
+       if(s==avg){
+        return true;
+       }
+       if(i==nums.length || s>avg){
+        return false;
+       }
+       return solve(nums,avg,s+nums[i],i+1)||solve(nums,avg,s,i+1);
+    }
+}
+time=O(2^n)
+space=O(n)
+
+class Solution {
+    public boolean canPartition(int[] nums) {
+        int tot=0;
+        for(int i=0;i<nums.length;i++){
+            tot+=nums[i];
+        }
+        if(tot%2!=0){
+            return false;
+        }
+        Boolean[][] dp=new Boolean[nums.length][tot/2];
+        return solve(nums,tot/2,0,0,dp);
+    }
+    public boolean solve(int[] nums,int avg,int s,int i,Boolean[][]dp){
+       if(s==avg){
+        return true;
+       }
+       if(i==nums.length || s>avg){
+        return false;
+       }
+       if(dp[i][s]!=null){
+        return dp[i][s];
+       }
+       return dp[i][s]= solve(nums,avg,s+nums[i],i+1,dp)||solve(nums,avg,s,i+1,dp);
+    }
+}
+
+time=O(n*avg)
+space=O(n*avg)
